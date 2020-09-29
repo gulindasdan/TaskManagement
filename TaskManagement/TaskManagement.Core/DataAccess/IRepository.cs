@@ -13,7 +13,6 @@ namespace TaskManagement.Core.DataAccess
         Task<TEntity> GetByIdAsync(TKey key);
         Task<IEnumerable<TEntity>> Find(Expression<Func<TEntity,bool>> predicate);
         Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity,bool>> predicate);
-        TEntity Get(TEntity entity);
         Task AddAsync(TEntity entity);
         Task AddRangeAsync(IEnumerable<TEntity> entities);
         Task Update(TEntity entity);
