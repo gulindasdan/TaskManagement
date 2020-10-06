@@ -28,6 +28,8 @@ namespace TaskManagement.Entities
         public virtual Project Project { get; set; }
         public virtual IEnumerable<TaskProcess> TaskProcesses { get; set; }
         public virtual IEnumerable<Comment> Comments { get; set; }
+        public virtual IEnumerable<User> Users { get; set; }
+
         public virtual IEnumerable<Attachment> Attachments { get; set; }
     }
 }
