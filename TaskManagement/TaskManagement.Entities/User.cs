@@ -15,5 +15,9 @@ namespace TaskManagement.Entities
         public DateTime? CreatedDate { get ; set ; }
         public DateTime? ModifiedDate { get ; set ; }
         public bool? isActive { get ; set ; }
+
+        public virtual IEnumerable<Comment> Comments { get; set; }
+        public virtual IEnumerable<Task> Tasks { get; set; }
+        public virtual IEnumerable<History> Histories { get; set; }
     }
 }
