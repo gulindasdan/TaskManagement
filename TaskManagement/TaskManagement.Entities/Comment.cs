@@ -11,9 +11,9 @@ namespace TaskManagement.Entities
         public string Content { get; set; }
         public int UserId { get; set; }
         public int TaskId { get; set; }
-        public DateTime? CreatedDate { get ; set ; }
+        public DateTime CreatedDate { get ; set ; }
         public DateTime? ModifiedDate { get ; set ; }
-        public bool? isActive { get ; set ; }
+        public bool IsActive { get ; set ; }
 
         public virtual User User { get; set; }
         public virtual Task Task { get; set; }

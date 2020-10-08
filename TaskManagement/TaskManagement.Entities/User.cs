@@ -12,9 +12,9 @@ namespace TaskManagement.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public DateTime? BirthDate { get; set; }
-        public DateTime? CreatedDate { get ; set ; }
+        public DateTime CreatedDate { get ; set ; }
         public DateTime? ModifiedDate { get ; set ; }
-        public bool? isActive { get ; set ; }
+        public bool IsActive { get ; set ; }
 
         public virtual IEnumerable<Comment> Comments { get; set; }
         public virtual IEnumerable<Task> Tasks { get; set; }

@@ -18,9 +18,9 @@ namespace TaskManagement.Entities
         public int ProjectId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public DateTime? CreatedDate { get ; set ; }
+        public DateTime CreatedDate { get ; set ; }
         public DateTime? ModifiedDate { get; set ; }
-        public bool? isActive { get ; set ; }
+        public bool IsActive { get ; set ; }
 
         public virtual User Reporter { get; set; }
         public virtual User Assignee { get; set; }
@@ -28,7 +28,7 @@ namespace TaskManagement.Entities
         public virtual Project Project { get; set; }
         public virtual IEnumerable<TaskProcess> TaskProcesses { get; set; }
         public virtual IEnumerable<Comment> Comments { get; set; }
-        public virtual IEnumerable<User> Users { get; set; }
+        public virtual IEnumerable<User> Viewers { get; set; }
 
         public virtual IEnumerable<Attachment> Attachments { get; set; }
     }
