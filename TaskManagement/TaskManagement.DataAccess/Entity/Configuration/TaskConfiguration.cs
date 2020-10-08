@@ -10,7 +10,7 @@ using TaskManagement.Entities;
 
 namespace TaskManagement.DataAccess.Entity.Configuration
 {
-    public class TaskConfiguration : EntityConfiguration<Task> 
+    public class TaskConfiguration : EntityConfiguration<Task>
     {
         public override void Configure(EntityTypeBuilder<Task> builder)
         {
@@ -27,7 +27,7 @@ namespace TaskManagement.DataAccess.Entity.Configuration
             builder.Property(x => x.Number)
                         .ValueGeneratedOnAdd();
             builder.Property(x => x.Code).HasMaxLength(200);
-            builder.Property(x=>x.StartDate)
+            builder.Property(x => x.StartDate)
                         .HasColumnType("DateTime")
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("GETDATE()")
@@ -35,6 +35,18 @@ namespace TaskManagement.DataAccess.Entity.Configuration
             builder.Property(x => x.EndDate)
                         .HasColumnType("DateTime");
             base.Configure(builder);
+
+            builder.HasOne(t => t.Closer)
+                .WithMany(b => b.Tasks)
+                .HasForeignKey(t => t.CloserId);
+
+            builder.HasOne(t => t.Creater)
+                .WithMany(b => b.Tasks)
+                .HasForeignKey(t => t.CreaterId);
+
+            builder.HasOne(t => t.Assignee)
+                .WithMany(b => b.Tasks)
+                .HasForeignKey(t => t.AssigneeId);
         }
     }
 }

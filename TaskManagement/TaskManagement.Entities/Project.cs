@@ -18,8 +18,8 @@ namespace TaskManagement.Entities
         public DateTime? ModifiedDate { get ; set ; }
         public bool IsActive { get ; set ; }
 
-        public virtual User Creater { get; set; }
-        public virtual User Closer { get; set; }
+        public virtual ProjectManager Creater { get; set; }
+        public virtual ProjectManager Closer { get; set; }
         public virtual IEnumerable<Task> Tasks { get; set; }
         public virtual IEnumerable<ProjectStatus> ProjectStatuses { get; set; }
     }

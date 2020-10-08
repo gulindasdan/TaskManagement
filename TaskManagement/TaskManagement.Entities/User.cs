@@ -18,6 +18,7 @@ namespace TaskManagement.Entities
 
         public virtual IEnumerable<Comment> Comments { get; set; }
         public virtual IEnumerable<Task> Tasks { get; set; }
+        public virtual IEnumerable<Project> Projects { get; set; }
         public virtual IEnumerable<History> Histories { get; set; }
     }
 }

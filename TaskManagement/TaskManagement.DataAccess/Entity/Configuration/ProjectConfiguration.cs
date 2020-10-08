@@ -17,7 +17,14 @@ namespace TaskManagement.DataAccess.Entity.Configuration
                         .ValueGeneratedOnAdd()
                         .HasDefaultValueSql("GETDATE()")
                         .IsRequired();
-            builder.Property(x => x.Name).HasMaxLength(300).IsRequired();
+            builder.Property(x => x.Name)
+                        .HasMaxLength(300).IsRequired();
+            builder.HasOne(x => x.Creater)
+                        .WithMany(x => x.Projects)
+                        .HasForeignKey(x => x.CreaterId);
+            builder.HasOne(x => x.Closer)
+                        .WithMany(x => x.Projects)
+                        .HasForeignKey(x => x.CloserId);
             base.Configure(builder);
         }
     }
