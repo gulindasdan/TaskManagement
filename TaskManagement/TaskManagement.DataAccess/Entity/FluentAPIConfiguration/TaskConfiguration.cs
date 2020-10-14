@@ -5,10 +5,9 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using TaskManagement.Core.Entities.Configuration;
 using TaskManagement.Entities;
 
-namespace TaskManagement.DataAccess.Entity.Configuration
+namespace TaskManagement.DataAccess.Entity.FluentAPIConfiguration
 {
     public class TaskConfiguration : EntityConfiguration<Task>
     {

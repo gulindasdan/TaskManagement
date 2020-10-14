@@ -2,10 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TaskManagement.Core.Entities.Configuration;
 using TaskManagement.Entities;
 
-namespace TaskManagement.DataAccess.Entity.Configuration
+namespace TaskManagement.DataAccess.Entity.FluentAPIConfiguration
 {
     public class UserConfiguration : EntityConfiguration<User>
     {
