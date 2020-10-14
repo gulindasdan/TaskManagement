@@ -19,7 +19,7 @@ namespace TaskManagement.Entities
         public DateTime? EndDate { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         public Creater Creater { get; set; }
         public Assigne Assignee { get; set; }

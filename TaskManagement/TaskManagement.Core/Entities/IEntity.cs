@@ -13,7 +13,7 @@ namespace TaskManagement.Core.Entities
         DateTime CreatedDate { get; set; }
 
         DateTime? ModifiedDate { get; set; }
-        bool IsActive { get; set; }
+        bool? IsActive { get; set; }
         
     }
 }

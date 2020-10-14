@@ -9,6 +9,7 @@ namespace TaskManagement.DataAccess.Context
 {
     public class TaskManagementDbContext : DbContext
     {
+        public TaskManagementDbContext(){}
         public TaskManagementDbContext(DbContextOptions options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
