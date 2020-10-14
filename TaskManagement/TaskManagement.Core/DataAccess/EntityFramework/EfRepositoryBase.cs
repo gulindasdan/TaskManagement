@@ -9,12 +9,18 @@ using TaskManagement.Core.Entities;
 
 namespace TaskManagement.Core.DataAccess.EntityFramework
 {
-    public class EfRepositoryBase<TEntity, TKey, TContext> : IRepository<TEntity, TKey> 
-        where TEntity : class, IEntity<TKey>, new()
-        where TContext: DbContext, new()
+    public class EfRepositoryBase<TEntity, TContext> : EfRepositoryBase<TEntity, int, TContext>
+        where TEntity : class, IEntity<int>, new()
+        where TContext : DbContext, new()
     {
-        private readonly TContext _context;
-        private readonly DbSet<TEntity> _dbSet;
+        public EfRepositoryBase(TContext context) : base(context) { }
+    }
+    public class EfRepositoryBase<TEntity, TKey, TContext> : IRepository<TEntity, TKey>, IDisposable
+    where TEntity : class, IEntity<TKey>, new()
+    where TContext : DbContext, new()
+    {
+        protected readonly TContext _context;
+        protected readonly DbSet<TEntity> _dbSet;
         public EfRepositoryBase(TContext context)
         {
             _context = context;
@@ -22,20 +28,19 @@ namespace TaskManagement.Core.DataAccess.EntityFramework
         }
         public async Task AddAsync(TEntity entity)
         {
-            _dbSet.Add(entity);
+            await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
 
         public async Task AddRangeAsync(IEnumerable<TEntity> entities)
         {
-            _dbSet.AddRange(entities);
+            await _dbSet.AddRangeAsync(entities);
             await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<TEntity>> WhereAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return await _dbSet.Where(predicate).ToListAsync();
-
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
@@ -50,8 +55,21 @@ namespace TaskManagement.Core.DataAccess.EntityFramework
 
         public async Task RemoveAsync(TEntity entity)
         {
-            _dbSet.Remove(entity);
-            await _context.SaveChangesAsync();
+            if (entity.IsActive != null)
+            {
+                TEntity tEntity = entity;
+                tEntity.IsActive = false;
+
+                await UpdateAsync(tEntity);
+            }
+            else
+            {
+                var entry = _context.Entry(entity);
+                _dbSet.Attach(entity);
+                entry.State = EntityState.Deleted;
+
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task RemoveRangeAsync(IEnumerable<TEntity> entities)
@@ -62,14 +80,33 @@ namespace TaskManagement.Core.DataAccess.EntityFramework
 
         public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-           return await _dbSet.SingleOrDefaultAsync(predicate);
-           
+            return await _dbSet.SingleOrDefaultAsync(predicate);
         }
 
         public async Task UpdateAsync(TEntity entity)
         {
-            _dbSet.Update(entity);
+            _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
+        #region Dispose
+        private bool _disposed = false;
+        public void Dispose() => Dispose(true);
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                _context.Dispose();
+            }
+
+            _disposed = true;
+        }
+        #endregion
     }
 }
