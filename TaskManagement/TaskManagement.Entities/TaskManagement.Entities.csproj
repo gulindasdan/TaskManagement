@@ -5,6 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Assigne.cs" />
+    <Compile Remove="Attachment.cs" />
+    <Compile Remove="BusinessAnalyst.cs" />
+    <Compile Remove="Comment.cs" />
+    <Compile Remove="Creater.cs" />
+    <Compile Remove="History.cs" />
+    <Compile Remove="Process.cs" />
+    <Compile Remove="ProcessStatus.cs" />
+    <Compile Remove="Project.cs" />
+    <Compile Remove="ProjectManager.cs" />
+    <Compile Remove="ProjectStatus.cs" />
+    <Compile Remove="SoftwareDeveloper.cs" />
+    <Compile Remove="Status.cs" />
+    <Compile Remove="Task.cs" />
+    <Compile Remove="TaskProcess.cs" />
+    <Compile Remove="TeamLeader.cs" />
+    <Compile Remove="Tester.cs" />
+    <Compile Remove="User.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
   </ItemGroup>
 
