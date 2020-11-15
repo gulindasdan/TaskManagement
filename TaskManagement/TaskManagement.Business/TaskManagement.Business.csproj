@@ -6,6 +6,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.9" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TaskManagement.Core\TaskManagement.Core.csproj" />
+    <ProjectReference Include="..\TaskManagement.Entities\TaskManagement.Entities.csproj" />
   </ItemGroup>
 
 </Project>
